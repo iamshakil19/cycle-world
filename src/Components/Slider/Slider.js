@@ -24,16 +24,16 @@ const Slider = () => {
             className="mySwiper"
         >
             <SwiperSlide>
-                <img src="https://www.startech.com.bd/image/cache/catalog/offer-page/eid-22/eid-2022-deal-home-banner-982x500.jpg" />
+                <img src="https://www.durantabikes.com/media/bikes/large/804257.jpg" />
             </SwiperSlide>
             <SwiperSlide>
-                <img src="https://www.startech.com.bd/image/cache/catalog/home/banner/bkash-nagad-free-home-delivery-combined-home-banner-982x500.jpg" />
+                <img src="https://www.durantabikes.com/media/bikes/large/804479.jpg" />
             </SwiperSlide>
             <SwiperSlide>
-                <img src="https://www.startech.com.bd/image/cache/catalog/home/banner/ramadan-mega-deal-home-banner-35k-982x500.png" />
+                <img src="https://www.durantabikes.com/media/bikes/large/804494.jpg" />
             </SwiperSlide>
             <SwiperSlide>
-                <img src="https://www.startech.com.bd/image/cache/catalog/home/banner/free-home-delivery-feb-home-banner-gazipur-982x500.jpg" />
+                <img src="https://www.durantabikes.com/media/bikes/large/85480.jpg" />
             </SwiperSlide>
         </Swiper>
     );

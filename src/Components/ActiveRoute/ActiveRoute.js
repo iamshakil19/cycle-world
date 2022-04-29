@@ -8,7 +8,7 @@ function ActiveRoute({ children, to, ...props }) {
     return (
       <div>
         <Link
-          style={{ borderBottom: match ? "2px solid #F34E3A" : "none"}}
+          style={{ borderBottom: match ? "3px solid #ffffff" : "none"}}
           to={to}
           {...props}
         >
