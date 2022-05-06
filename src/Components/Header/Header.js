@@ -1,5 +1,5 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './Header.css'
 import ActiveRoute from '../ActiveRoute/ActiveRoute';
 import { MenuIcon } from '@heroicons/react/solid'
@@ -30,7 +30,7 @@ const Header = () => {
                 <label htmlFor="check" className='check-button'>
                     <MenuIcon className='menu-icon'></MenuIcon>
                 </label>
-                <label onClick={navigateToAdminHome} className='logo'>Admin</label>
+                <label onClick={navigateToAdminHome} className='logo'>Cycle World</label>
                 <ul>
                     <li> <ActiveRoute to={'/home'}>Home</ActiveRoute> </li>
                     <li><ActiveRoute to={'/about'}>About</ActiveRoute></li>

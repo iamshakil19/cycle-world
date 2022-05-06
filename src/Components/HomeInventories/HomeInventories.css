@@ -1,0 +1,21 @@
+.product-style img{
+    width: 350px;
+    display: block;
+    margin: 0 auto;
+}
+.products-info{
+    margin: 0 auto;
+    width: 100%;
+}
+.update-btn-style{
+    border: 1px solid rgba(48, 48, 48, 0.951);
+    height: 33px;
+    width: 80px;
+    border-radius: 35px;
+    font-weight: 600;
+}
+.update-btn-style:hover{
+    background-color: rgba(48, 48, 48, 0.951);
+    color: white;
+    transition: .3s;
+}
