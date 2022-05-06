@@ -9,7 +9,11 @@ import Register from './Components/Register/Register';
 import Footer from './Components/Footer/Footer';
 import { Toaster } from 'react-hot-toast';
 import PrivateRoute from './Components/PrivateRoute/PrivateRoute';
-import InventoryDetails from './Components/InventoryDetails/InventoryDetails';
+import UpdateInventory from './Components/UpdateInventory/UpdateInventory';
+import Blog from './Components/Blog/Blog';
+import MyItems from './Components/MyItems/MyItems';
+import AddItems from './Components/AddItems/AddItems';
+import ManageItems from './Components/ManageItems/ManageItems';
 
 function App() {
   return (
@@ -18,11 +22,15 @@ function App() {
       <Routes>
         <Route path='/' element={<Home />}></Route>
         <Route path='/home' element={<Home />}></Route>
-        <Route path='details/:inventoryId' element={
+        <Route path='inventory/:inventoryId' element={
           <PrivateRoute>
-            <InventoryDetails />
+            <UpdateInventory />
           </PrivateRoute>
         }></Route>
+        <Route path='/blog' element={<Blog/>}></Route>
+        <Route path='/myItems' element={<MyItems/>}></Route>
+        <Route path='/addItems' element={<AddItems/>}></Route>
+        <Route path='/manageItems' element={<ManageItems/>}></Route>
         <Route path='/login' element={<Login />}></Route>
         <Route path='/register' element={<Register />}></Route>
         <Route path='*' element={<NotFound></NotFound>}></Route>

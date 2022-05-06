@@ -1,0 +1,35 @@
+.update-container {
+    margin: 20px 0;
+}
+
+.update-container img {
+    width: 350px;
+    display: block;
+    margin: 0 auto;
+}
+
+.stock-input-style {
+    border: 1px solid rgba(48, 48, 48, 0.951);
+    outline: none;
+    height: 35px;
+    width: 150px;
+    border-radius: 5px;
+    padding: 0 10px;
+}
+
+.submit-btn-style {
+    border: 1px solid rgba(48, 48, 48, 0.951);
+    height: 36px;
+    width: 150px;
+    border-radius: 5px;
+    margin: 10px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.submit-btn-style:hover {
+    background-color: rgba(48, 48, 48, 0.951);
+    color: white;
+    transition: .3s;
+
+}

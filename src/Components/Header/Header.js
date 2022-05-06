@@ -33,17 +33,22 @@ const Header = () => {
                 <label onClick={navigateToAdminHome} className='logo'>Cycle World</label>
                 <ul>
                     <li> <ActiveRoute to={'/home'}>Home</ActiveRoute> </li>
-                    <li><ActiveRoute to={'/about'}>About</ActiveRoute></li>
+
                     <li><ActiveRoute to={'/blog'}>Blog</ActiveRoute></li>
-                    <li><ActiveRoute to={'/manage'}>Manage</ActiveRoute></li>
 
                     <>
-                    {
-                        user ? 
-                        <button onClick={handleLogout} className='header-login-button'>Log Out</button>
-                        :
-                        <button onClick={navigateTologin} className='header-login-button'>Login</button>
-                    }
+                        {
+                            user ?
+                                <>
+                                    <li><ActiveRoute to={'/myItems'}>My Items</ActiveRoute></li>
+                                    <li><ActiveRoute to={'/addItems'}>Add Items</ActiveRoute></li>
+                                    <li><ActiveRoute to={'/manageItems'}>Manage</ActiveRoute></li>
+
+                                    <button onClick={handleLogout} className='header-login-button'>Log Out</button>
+                                </>
+                                :
+                                <button onClick={navigateTologin} className='header-login-button'>Login</button>
+                        }
                     </>
                 </ul>
             </nav>

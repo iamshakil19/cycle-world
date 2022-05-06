@@ -14,14 +14,14 @@
     margin: 40px auto;
 }
 .all-inventories-button{
-    border: 1px solid #0091ff;
+    border: 1px solid rgba(48, 48, 48, 0.951);
     height: 40px;
     width: 160px;
-    border-radius: 5px;
+    border-radius: 50px;
     font-weight: 600;
 }
 .all-inventories-button:hover{
-    background-color: #0091ff;
+    background-color: rgba(48, 48, 48, 0.951);
     color: white;
     transition: .3s;
 }
