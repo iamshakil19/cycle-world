@@ -27,10 +27,14 @@ function App() {
             <UpdateInventory />
           </PrivateRoute>
         }></Route>
-        <Route path='/blog' element={<Blog/>}></Route>
-        <Route path='/myItems' element={<MyItems/>}></Route>
-        <Route path='/addItem' element={<AddItems/>}></Route>
-        <Route path='/manageItems' element={<ManageItems/>}></Route>
+        <Route path='/blog' element={<Blog />}></Route>
+        <Route path='/myItems' element={<MyItems />}></Route>
+        <Route path='/addItem' element={<AddItems />}></Route>
+        <Route path='/manageItems' element={
+          <PrivateRoute>
+            <ManageItems />
+          </PrivateRoute>
+        }></Route>
         <Route path='/login' element={<Login />}></Route>
         <Route path='/register' element={<Register />}></Route>
         <Route path='*' element={<NotFound></NotFound>}></Route>

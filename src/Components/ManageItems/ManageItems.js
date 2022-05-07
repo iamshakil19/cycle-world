@@ -3,10 +3,30 @@ import { useNavigate } from 'react-router-dom';
 import AllItems from '../AllItems/AllItems';
 import UseInventories from '../Hooks/UseInventories';
 import './ManageItems.css'
+import toast from 'react-hot-toast';
 
 
 const ManageItems = () => {
     const [inventories, setInventories] = UseInventories()
+
+    const handleDeleteItem = _id => {
+        const confirm = window.confirm("Are you sure you want to delete?")
+        if (confirm) {
+            const url = `http://localhost:5000/products/${_id}`;
+            fetch(url, {
+                method: 'DELETE'
+            })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.deletedCount > 0) {
+                        toast.success("Item deleted successfully")
+                        const remainingItems = inventories.filter(inventory => inventory._id !== _id)
+                        setInventories(remainingItems)
+                    }
+                })
+        }
+
+    }
 
     const navigate = useNavigate()
     const navigateToAddItem = () => {
@@ -33,6 +53,7 @@ const ManageItems = () => {
                     inventories.map(inventory => <AllItems
                         key={inventory._id}
                         inventory={inventory}
+                        handleDeleteItem={handleDeleteItem}
                     ></AllItems>)
                 }
             </div>
