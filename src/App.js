@@ -29,7 +29,7 @@ function App() {
         }></Route>
         <Route path='/blog' element={<Blog/>}></Route>
         <Route path='/myItems' element={<MyItems/>}></Route>
-        <Route path='/addItems' element={<AddItems/>}></Route>
+        <Route path='/addItem' element={<AddItems/>}></Route>
         <Route path='/manageItems' element={<ManageItems/>}></Route>
         <Route path='/login' element={<Login />}></Route>
         <Route path='/register' element={<Register />}></Route>

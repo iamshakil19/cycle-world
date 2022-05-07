@@ -54,7 +54,7 @@ const UpdateInventory = () => {
             </div>
 
             <form onSubmit={handleUpdateQuantity} className='text-center'>
-                <input className='stock-input-style' type="number" name="quantity" min={1} required placeholder='Quantity' />
+                <input className='stock-input-style' type="number" name="quantity" min={1} required placeholder='Quantity'/>
                 <input className='submit-btn-style' type="submit" value="Update Stock" />
             </form>
         </div>

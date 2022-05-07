@@ -9,7 +9,7 @@ const Inventory = () => {
     const navigate = useNavigate()
 
     const navigateToAllProducts = () => {
-        navigate('/allInventories')
+        navigate('/manageItems')
     }
 
     const [inventories, setInventories] = UseInventories()
@@ -26,7 +26,7 @@ const Inventory = () => {
                 }
             </div>
             <div className='text-center mt-10'>
-                <button onClick={navigateToAllProducts} className='all-inventories-button'>Manage Inventories</button>
+                <button onClick={navigateToAllProducts} className='all-inventories-button'>Manage Items</button>
             </div>
         </div>
     );

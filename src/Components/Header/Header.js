@@ -41,7 +41,7 @@ const Header = () => {
                             user ?
                                 <>
                                     <li><ActiveRoute to={'/myItems'}>My Items</ActiveRoute></li>
-                                    <li><ActiveRoute to={'/addItems'}>Add Items</ActiveRoute></li>
+                                    <li><ActiveRoute to={'/addItem'}>Add Items</ActiveRoute></li>
                                     <li><ActiveRoute to={'/manageItems'}>Manage</ActiveRoute></li>
 
                                     <button onClick={handleLogout} className='header-login-button'>Log Out</button>
