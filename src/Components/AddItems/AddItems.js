@@ -1,9 +1,13 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './AddItems.css'
+import toast from 'react-hot-toast';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import auth from '../../firebase.init';
 const AddItems = () => {
-
+    const [user] = useAuthState(auth);
     const handleSubmitButton = event => {
         event.preventDefault()
+        const email = event.target.email.value;
         const name = event.target.itemName.value;
         const description = event.target.description.value;
         const quantity = event.target.quantity.value;
@@ -11,7 +15,7 @@ const AddItems = () => {
         const supplier = event.target.supplierName.value;
         const img = event.target.img.value;
         console.log(name, description, quantity, price, supplier, img);
-        const inventory = { name, img, description, price, quantity, supplier }
+        const inventory = { email, name, img, description, price, quantity, supplier }
 
         fetch('http://localhost:5000/products', {
             method: 'POST',
@@ -24,13 +28,24 @@ const AddItems = () => {
             .then(data => {
                 console.log(data);
             })
+        event.target.reset()
+        toast.success("Items Added Successfully")
     }
-    
+
     return (
         <div className='addItem-container my-5'>
             <h2 className='text-center text-2xl font-bold text-zinc-700'>Add Items</h2>
 
             <form onSubmit={handleSubmitButton} className='addItems-input-container'>
+                <div className='flex justify-center'>
+                    <div>
+                        <p className='email-password-text'>Your Email</p>
+                        <div>
+                            <input className='add-input-style cursor-not-allowed' type="email" name="email" placeholder='Type your email' value={user?.email} readOnly />
+                        </div>
+                        <div className='bottom-line'></div>
+                    </div>
+                </div>
                 <div className='flex justify-center'>
                     <div>
                         <p className='email-password-text'>Item Name</p>
@@ -86,7 +101,7 @@ const AddItems = () => {
                     </div>
                 </div>
                 <div className='text-center my-7'>
-                    <input type="submit" value="Submit" />
+                    <input className='addItem-submit-btn' type="submit" value="Submit" />
                 </div>
             </form>
         </div>

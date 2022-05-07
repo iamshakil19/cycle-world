@@ -12,3 +12,7 @@
     color: white;
     transition: .3s;
 }
+.table-head{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr) 100px 120px 130px;
+}
