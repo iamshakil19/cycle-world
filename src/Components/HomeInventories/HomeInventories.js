@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import './HomeInventories.css'
-
+import { descriptionSliceText, nameSliceText } from '../Utilites/Utilites';
 
 const HomeInventories = ({ product }) => {
     const navigate = useNavigate()
@@ -14,8 +14,8 @@ const HomeInventories = ({ product }) => {
             <img src={img} alt="" />
             <div className='flex justify-center'>
                 <div className='product-info'>
-                    <li><span className='font-bold'>Name: </span>{name}</li>
-                    <li><span className='font-bold'>Description:</span> {description}</li>
+                    <li><span className='font-bold'>Name: </span>{nameSliceText(name)}</li>
+                    <li><span className='font-bold'>Description:</span> {descriptionSliceText(description)}</li>
                     <li><span className='font-bold'>In Stock:</span> <span className='text-lg text-blue-600'>{quantity}</span></li>
                     <li><span className='font-bold'>Supplier:</span> {supplier}</li>
                     <li><span className='font-bold'>Price:</span> <span className='text-lg text-blue-600'>{price}</span> <strong>BDT</strong></li>

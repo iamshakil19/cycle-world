@@ -17,7 +17,7 @@ const AddItems = () => {
         console.log(name, description, quantity, price, supplier, img);
         const inventory = { email, name, img, description, price, quantity, supplier }
 
-        fetch('http://localhost:5000/products', {
+        fetch('https://arcane-island-70615.herokuapp.com/products', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

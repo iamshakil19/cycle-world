@@ -1,5 +1,7 @@
 import React from 'react';
 import Inventory from '../Inventory/Inventory';
+import MyBarChart from '../MyBarChart/MyBarChart';
+import Progress from '../Progress/Progress';
 import Slider from '../Slider/Slider';
 import './Home.css'
 const Home = () => {
@@ -7,6 +9,8 @@ const Home = () => {
         <div>
             <Slider></Slider>
             <Inventory></Inventory>
+            <Progress></Progress>
+            <MyBarChart></MyBarChart>
         </div>
     );
 };
