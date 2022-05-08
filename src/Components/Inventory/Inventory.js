@@ -16,7 +16,7 @@ const Inventory = () => {
     const top6inventories = inventories.slice(0, 6)
     return (
         <div className='inventory-container'>
-            <h2 className='inventory-text text-zinc-700'>Inventory</h2>
+            <h2 className='inventory-text text-zinc-700 my-4'>Inventory</h2>
             <div className='all-products-container'>
                 {
                     top6inventories.map(product => <HomeInventories

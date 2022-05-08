@@ -1,7 +1,17 @@
 .product-style img{
     width: 350px;
+    height: 230px;
     display: block;
     margin: 0 auto;
+}
+.product-style{
+    width: 90%;
+    margin: 0 auto 10px;
+}
+.product-style:hover{
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    border-radius: 7px;
+    border: 1px solid rgba(128, 128, 128, 0.343);
 }
 .products-info{
     margin: 0 auto;

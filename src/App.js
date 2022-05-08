@@ -28,8 +28,16 @@ function App() {
           </PrivateRoute>
         }></Route>
         <Route path='/blog' element={<Blog />}></Route>
-        <Route path='/myItems' element={<MyItems />}></Route>
-        <Route path='/addItem' element={<AddItems />}></Route>
+        <Route path='/myItems' element={
+          <PrivateRoute>
+            <MyItems />
+          </PrivateRoute>
+        }></Route>
+        <Route path='/addItem' element={
+          <PrivateRoute>
+            <AddItems />
+          </PrivateRoute>
+        }></Route>
         <Route path='/manageItems' element={
           <PrivateRoute>
             <ManageItems />

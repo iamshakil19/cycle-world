@@ -1,26 +1,94 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './Login.css';
 import LoginImage from '../../Images/login.jpg'
 import MailLogo from '../../Images/mail.png'
 import LockLogo from '../../Images/lock.png'
 import SocialLogin from '../Hooks/SocialLogin';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
+import toast from 'react-hot-toast';
+import { useSendPasswordResetEmail, useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import auth from '../../firebase.init';
 
 
 
 const Login = () => {
-
+    let location = useLocation();
+    let from = location.state?.from?.pathname || "/";
     const navigate = useNavigate()
-
     const navigateRegister = () => {
         navigate('/register')
     }
+
+    const [userInfo, setUserInfo] = useState({
+        email: "",
+        password: ""
+    })
+
+    const [customError, setCustomError] = useState({
+        emailError: "",
+        passwordError: "",
+        othersError: ""
+    })
+
+    const [
+        signInWithEmailAndPassword,
+        user,
+        loading,
+        firebaseError,
+    ] = useSignInWithEmailAndPassword(auth);
+
+    const [passwordResetEmail, sending, error] = useSendPasswordResetEmail(auth);
+
+    const handleFormSubmit = event => {
+        event.preventDefault()
+        signInWithEmailAndPassword(userInfo.email, userInfo.password);
+    }
+
+    const handleInputEmail = event => {
+        const emailRegex = /\S+@\S+\.\S+/
+        const validEmail = emailRegex.test(event.target.value)
+        if (validEmail) {
+            setUserInfo({ ...userInfo, email: event.target.value })
+            setCustomError({ ...customError, emailError: "" })
+        }
+        else {
+            setCustomError({ ...customError, emailError: "Invalid email" })
+            setUserInfo({ ...userInfo, email: "" })
+        }
+    }
+
+    const handleInputPassword = event => {
+        const passwordRegex = /.{6,}/
+        const validPassword = passwordRegex.test(event.target.value)
+        if (validPassword) {
+            setUserInfo({ ...userInfo, password: event.target.value })
+            setCustomError({ ...customError, passwordError: "" })
+        }
+        else {
+            setCustomError({ ...customError, passwordError: "Minimum 6 character length" })
+            setUserInfo({ ...userInfo, password: "" })
+        }
+    }
+
+    useEffect(() => {
+        if (firebaseError) {
+            toast.error(`${firebaseError.message}`)
+        }
+    }, [firebaseError])
+
+    useEffect(() => {
+        if (user) {
+            navigate(from, { replace: true });
+        }
+    })
+
+
     return (
         <div className='login-container'>
             <div className='login-image-container'>
                 <img className='login-illustration' src={LoginImage} alt="" />
             </div>
-            <form className='form-container'>
+            <form onSubmit={handleFormSubmit} className='form-container'>
                 <div>
                     <h2 className='login-text text-zinc-700'>Login</h2>
                 </div>
@@ -28,20 +96,34 @@ const Login = () => {
                     <p className='email-password-text'>Email</p>
                     <div className='flex'>
                         <img src={MailLogo} alt="" />
-                        <input className='input-style' type="email" name="" id="email" placeholder='Type your email' required/>
+                        <input onChange={handleInputEmail} className='input-style' type="email" name="" id="email" placeholder='Type your email' required />
                     </div>
                     <div className='bottom-line'></div>
+                    {
+                        customError?.emailError && <p className='text-red-500 mt-1 text-sm'>{customError.emailError}</p>
+                    }
 
                     <p className='email-password-text'>Password</p>
                     <div className='flex'>
                         <img src={LockLogo} alt="" />
-                        <input className='input-style' type="password" name="" id="password" placeholder='Type your password' required/>
+                        <input onChange={handleInputPassword} className='input-style' type="password" name="" id="password" placeholder='Type your password' required />
                     </div>
                     <div className='bottom-line'></div>
+                    {
+                        customError?.passwordError && <p className='text-red-500 mt-1 text-sm'>{customError.passwordError}</p>
+                    }
 
                     <div className='flex justify-between forget-container'>
-                        <p className='mx-4 register'>Need an Account? <span onClick={navigateRegister} className="cursor-pointer hover:text-blue-700 text-blue-500">please Register</span></p>
-                        <p className='forgot-password cursor-pointer'>Forgot Password?</p>
+                        <p className='mx-4 register'>Need an Account? <span onClick={navigateRegister} className="cursor-pointer hover:text-blue-700 text-blue-500">Please Register</span></p>
+                        <p onClick={async () => {
+                            if (userInfo.email === "") {
+                                toast.error("Please provide your email")
+                            }
+                            else {
+                                await passwordResetEmail(userInfo.email)
+                                toast.success("Password reset email was sent")
+                            }
+                        }} className='forgot-password cursor-pointer'>Forgot Password?</p>
                     </div>
 
                     <input className='login-button' type="submit" value="Login" />

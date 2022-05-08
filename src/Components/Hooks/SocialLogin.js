@@ -6,6 +6,7 @@ import GithubLogo from '../../Images/github.png'
 import { useLocation, useNavigate } from 'react-router-dom';
 import auth from '../../firebase.init';
 import { useSignInWithFacebook, useSignInWithGithub, useSignInWithGoogle } from 'react-firebase-hooks/auth';
+import toast from 'react-hot-toast';
 
 
 const SocialLogin = () => {
@@ -24,11 +25,10 @@ const SocialLogin = () => {
         }
     })
     useEffect(() => {
-        if (githubError === 'auth/account-exists-with-different-credential') {
-            // console.error(facebookError, googleError, githubError)
-            console.log("email already in use");
+        if(googleError || facebookError || githubError){
+            toast.error(googleError?.message || facebookError?.message || githubError?.message)
         }
-    })
+    },[googleError,facebookError, githubError])
 
     return (
 
