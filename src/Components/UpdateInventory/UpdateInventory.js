@@ -21,7 +21,7 @@ const UpdateInventory = () => {
     const handleUpdateQuantity = event => {
         event.preventDefault()
         const quantity = event.target.quantity.value
-        const url = `https://arcane-island-70615.herokuapp.com/products/${inventoryId}`;
+        const url = `http://localhost:5000/products/${inventoryId}`;
         fetch(url, {
             method: 'PUT',
             headers: {
@@ -37,8 +37,20 @@ const UpdateInventory = () => {
             })
     }
 
-    const handleDeliveryButton = () => {
-        
+    const handleDeliveryButton = async () => {
+        const url = `http://localhost:5000/delivery/${inventoryId}`;
+        await fetch(url, {
+            method: 'PUT',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify({ quantity })
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                toast.success("Delivery Success!!")
+            })
     }
     return (
         <div className='update-container'>

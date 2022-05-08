@@ -10,7 +10,7 @@ const AddItems = () => {
         const email = event.target.email.value;
         const name = event.target.itemName.value;
         const description = event.target.description.value;
-        const quantity = event.target.quantity.value;
+        const quantity = Number(event.target.quantity.value);
         const price = event.target.price.value;
         const supplier = event.target.supplierName.value;
         const img = event.target.img.value;

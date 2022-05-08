@@ -22,4 +22,5 @@
 ### `Firebase Hooks`
 ### `React Hot Toast`
 ### `Plugins: daisyui`
+### `Plugins: flobite`
 
