@@ -44,7 +44,7 @@ const Login = () => {
         const email = userInfo?.email
         event.preventDefault()
         await signInWithEmailAndPassword(userInfo.email, userInfo.password);
-        const {data} = await axios.post("http://localhost:5000/login", {email})
+        const { data } = await axios.post("https://arcane-island-70615.herokuapp.com/login", { email })
         localStorage.setItem('token', data.token)
         navigate(from, { replace: true });
     }

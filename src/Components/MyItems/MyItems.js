@@ -16,7 +16,7 @@ const MyItems = () => {
     useEffect(() => {
         const handleMyItems = async () => {
             const email = user.email;
-            const url = `http://localhost:5000/myItems?email=${email}`
+            const url = `https://arcane-island-70615.herokuapp.com/myItems?email=${email}`
             try {
                 const { data } = await axios.get(url, {
                     headers: {
@@ -55,9 +55,6 @@ const MyItems = () => {
         }
 
     }
-
-
-
     return (
         <div className='mb-14'>
             <div>

@@ -22,7 +22,7 @@ const UpdateInventory = () => {
     const handleUpdateQuantity = event => {
         event.preventDefault()
         const quantity = event.target.quantity.value
-        const url = `http://localhost:5000/products/${inventoryId}`;
+        const url = `https://arcane-island-70615.herokuapp.com/products/${inventoryId}`;
         fetch(url, {
             method: 'PUT',
             headers: {
@@ -40,7 +40,7 @@ const UpdateInventory = () => {
     }
 
     const handleDeliveryButton = async () => {
-        const url = `http://localhost:5000/delivery/${inventoryId}`;
+        const url = `https://arcane-island-70615.herokuapp.com/delivery/${inventoryId}`;
         await fetch(url, {
             method: 'PUT',
             headers: {
