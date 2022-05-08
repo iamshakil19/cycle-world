@@ -8,6 +8,7 @@ import { nameSliceText } from '../Utilites/Utilites';
 const UpdateInventory = () => {
     const { inventoryId } = useParams()
     const [inventory, setInventory] = useState({})
+    const [isReload, setIsReload] = useState(false)
     const { img, _id, email, name, description, quantity, price, supplier } = inventory;
 
     useEffect(() => {
@@ -16,7 +17,7 @@ const UpdateInventory = () => {
         fetch(url)
             .then(res => res.json())
             .then(data => setInventory(data))
-    }, [])
+    }, [isReload])
 
     const handleUpdateQuantity = event => {
         event.preventDefault()
@@ -32,6 +33,7 @@ const UpdateInventory = () => {
             .then(res => res.json())
             .then(data => {
                 console.log(data);
+                setIsReload(!isReload)
                 toast.success("Quantity Updated Successfully!!")
                 event.target.reset()
             })
@@ -49,6 +51,7 @@ const UpdateInventory = () => {
             .then(res => res.json())
             .then(data => {
                 console.log(data);
+                setIsReload(!isReload)
                 toast.success("Delivery Success!!")
             })
     }

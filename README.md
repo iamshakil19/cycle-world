@@ -13,14 +13,16 @@
 * MongoDB has been used as website database.
 * When you go to my items page, you will see your own added products.
 * And when you go to the manage section, you will see all the items.
+* If you go to other information section, you will see the number of products dynamically.
 
 ## Technology Used
 
 ### `React Router`
-### `React Swiper`
 ### `Tailwind`
+### `JWT`
 ### `Firebase Hooks`
 ### `React Hot Toast`
 ### `Plugins: daisyui`
 ### `Plugins: flobite`
+### `Plugins: Swiper`
 

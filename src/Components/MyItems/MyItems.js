@@ -1,16 +1,41 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './MyItems.css'
 import { useAuthState } from 'react-firebase-hooks/auth';
 import auth from '../../firebase.init';
-import UseInventories from '../Hooks/UseInventories';
 import toast from 'react-hot-toast';
 import MyItem from '../MyItem/MyItem';
+import { useNavigate } from 'react-router-dom';
+import { signOut } from 'firebase/auth';
+import axios from 'axios';
 
 const MyItems = () => {
+    const navigate = useNavigate();
     const [user] = useAuthState(auth);
-    const userEmail = user?.email
-    const [inventories, setInventories] = UseInventories()
-    const filterItems = inventories.filter(items => items.email === userEmail)
+    const [myInventories, setMyInventories] = useState([])
+
+    useEffect(() => {
+        const handleMyItems = async () => {
+            const email = user.email;
+            const url = `http://localhost:5000/myItems?email=${email}`
+            try {
+                const { data } = await axios.get(url, {
+                    headers: {
+                        authorization: `Bearer ${localStorage.getItem('token')}`
+                    }
+                })
+                setMyInventories(data)
+            }
+            catch (error) {
+                console.log(error.message);
+                if (error.response.status === 401 || error.response.status === 403) {
+                    signOut(auth);
+                    navigate('/login')
+                }
+            }
+        }
+        handleMyItems()
+
+    }, [user])
 
     const handleDeleteItem = _id => {
         const confirm = window.confirm("Are you sure you want to delete?")
@@ -23,8 +48,8 @@ const MyItems = () => {
                 .then(data => {
                     if (data.deletedCount > 0) {
                         toast.success("Item deleted successfully")
-                        const remainingItems = inventories.filter(inventory => inventory._id !== _id)
-                        setInventories(remainingItems)
+                        const remainingItems = myInventories.filter(inventory => inventory._id !== _id)
+                        setMyInventories(remainingItems)
                     }
                 })
         }
@@ -47,7 +72,7 @@ const MyItems = () => {
                 </div>
                 <div className=''>
                     {
-                        filterItems.map(filterMyItems => <MyItem
+                        myInventories.map(filterMyItems => <MyItem
                             key={filterMyItems._id}
                             filterMyItems={filterMyItems}
                             handleDeleteItem={handleDeleteItem}

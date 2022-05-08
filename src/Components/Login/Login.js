@@ -8,6 +8,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import { useSendPasswordResetEmail, useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import auth from '../../firebase.init';
+import axios from 'axios';
 
 
 
@@ -39,9 +40,13 @@ const Login = () => {
 
     const [passwordResetEmail, sending, error] = useSendPasswordResetEmail(auth);
 
-    const handleFormSubmit = event => {
+    const handleFormSubmit = async event => {
+        const email = userInfo?.email
         event.preventDefault()
-        signInWithEmailAndPassword(userInfo.email, userInfo.password);
+        await signInWithEmailAndPassword(userInfo.email, userInfo.password);
+        const {data} = await axios.post("http://localhost:5000/login", {email})
+        localStorage.setItem('token', data.token)
+        navigate(from, { replace: true });
     }
 
     const handleInputEmail = event => {
@@ -75,12 +80,6 @@ const Login = () => {
             toast.error(`${firebaseError.message}`)
         }
     }, [firebaseError])
-
-    useEffect(() => {
-        if (user) {
-            navigate(from, { replace: true });
-        }
-    })
 
 
     return (
